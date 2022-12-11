@@ -126,8 +126,9 @@ class FollowBase(LoginRequiredMixin, View):
     """フォローのベース。リダイレクト先を以降で継承先で設定"""
     def get(self, request, *args, **kwargs):
         pk = self.kwargs['pk']
+        # sawada
         target_user = Post.objects.get(pk=pk).user
-
+        # damin
         my_connection = Connection.objects.get_or_create(user=self.request.user)
 
         if target_user in my_connection[0].following.all():
